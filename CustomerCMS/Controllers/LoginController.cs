@@ -6,12 +6,12 @@ using System.Web.Mvc;
 
 namespace CustomerCMS.Controllers
 {
-    public class HomeController : Controller
+    public class LoginController : Controller
     {
+        // GET: Login
         public ActionResult Index()
         {
-            ViewBag.Title = "系统控制面板";
-
+            ViewBag.Title = "登录页";
             return View();
         }
     }
