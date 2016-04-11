@@ -177,6 +177,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\AdminSuper\AdminSuperAreaRegistration.cs" />
+    <Compile Include="Areas\AdminSuper\Controllers\AccountController.cs" />
+    <Compile Include="Areas\AdminSuper\DAL\AccountContext.cs" />
+    <Compile Include="Areas\AdminSuper\DAL\AccountInitializer.cs" />
+    <Compile Include="Areas\AdminSuper\Models\SysRole.cs" />
+    <Compile Include="Areas\AdminSuper\Models\SysUser.cs" />
+    <Compile Include="Areas\AdminSuper\Models\SysUserRole.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
@@ -278,6 +285,11 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\AdminSuper\Views\web.config" />
+    <Content Include="Areas\AdminSuper\Views\Shared\_Layout_login.cshtml" />
+    <Content Include="Areas\AdminSuper\Views\Account\Index.cshtml" />
+    <Content Include="Areas\AdminSuper\Views\Account\Login.cshtml" />
+    <Content Include="Areas\AdminSuper\Views\Account\Register.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -289,7 +301,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -310,6 +324,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\AdminSuper\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

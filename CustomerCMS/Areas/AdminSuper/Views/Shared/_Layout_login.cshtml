@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="客户外呼CMS系统" />
+    <meta name="description" content="客户外呼CMS系统" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- basic styles -->
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!--[if IE 7]>
+     @Styles.Render("~/Content/css/ie7")
+    <![endif]-->
+    <!-- page specific plugin styles -->
+    <!-- fonts -->
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+
+    <!-- ace styles -->
+    @Styles.Render("~/Content/css/ace")
+
+    <!--[if lte IE 8]>
+        @Styles.Render("~/Content/css/ace/ie")
+    <![endif]-->
+    <!-- inline styles related to this page -->
+    <!-- ace settings handler -->
+    @Styles.Render("~/bundles/ace-extra")
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    @Styles.Render("~/bundles/html5repond")
+    <![endif]-->
+</head>
+
+<body class="login-layout">
+   @RenderBody();
+
+    <!-- basic scripts -->
+    <!--[if !IE]> -->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+    <!-- <![endif]-->
+    <!--[if IE]>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <![endif]-->
+    <!--[if !IE]> -->
+
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='/Scripts/jquery-2.0.3.min.js'>" + "<" + "script>");
+    </script>
+
+    <!-- <![endif]-->
+    <!--[if IE]>
+    <script type="text/javascript">
+     window.jQuery || document.write("<script src='/Scripts/jquery-1.10.2.min.js'>"+"<"+"script>");
+    </script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        if ("ontouchend" in document) document.write("<script src='Scripts/jquery.mobile.custom.min.js'>" + "<" + "script>");
+    </script>
+
+
+
+    <!-- inline scripts related to this page -->
+
+    <script type="text/javascript">
+        function show_box(id) {
+            jQuery('.widget-box.visible').removeClass('visible');
+            jQuery('#' + id).addClass('visible');
+        }
+    </script>
+</body>
+</html>
+
+
+

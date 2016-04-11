@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace CustomerCMS.Models
 {
-    // AccountController 操作返回的模型。
 
     public class ExternalLoginViewModel
     {
