@@ -1,0 +1,75 @@
+﻿@model CustomerCMS.Areas.AdminSuper.Models.CustomerCMScompany
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/AdminSuper/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CustomerCMScompany</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cc_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cc_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cc_numer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cc_numer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cc_img)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cc_img)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cc_fr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cc_fr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cc_emailsetting)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cc_emailsetting)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cc_revoerytime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cc_revoerytime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cc_revoerytime_everday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cc_revoerytime_everday)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

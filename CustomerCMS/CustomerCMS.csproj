@@ -178,9 +178,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\AdminSuper\AdminSuperAreaRegistration.cs" />
+    <Compile Include="Areas\AdminSuper\comm\BasePageModel.cs" />
+    <Compile Include="Areas\AdminSuper\comm\HtmlHelperExtensions.cs" />
     <Compile Include="Areas\AdminSuper\Controllers\AccountController.cs" />
+    <Compile Include="Areas\AdminSuper\Controllers\CenterController.cs" />
+    <Compile Include="Areas\AdminSuper\Controllers\CustomerCMScompaniesController.cs" />
     <Compile Include="Areas\AdminSuper\DAL\AccountContext.cs" />
     <Compile Include="Areas\AdminSuper\DAL\AccountInitializer.cs" />
+    <Compile Include="Areas\AdminSuper\Models\CustomerCMScompany.cs" />
     <Compile Include="Areas\AdminSuper\Models\SysRole.cs" />
     <Compile Include="Areas\AdminSuper\Models\SysUser.cs" />
     <Compile Include="Areas\AdminSuper\Models\SysUserRole.cs" />
@@ -215,6 +220,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\UploaderController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -290,6 +296,16 @@
     <Content Include="Areas\AdminSuper\Views\Account\Index.cshtml" />
     <Content Include="Areas\AdminSuper\Views\Account\Login.cshtml" />
     <Content Include="Areas\AdminSuper\Views\Account\Register.cshtml" />
+    <Content Include="Areas\AdminSuper\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\AdminSuper\Views\CustomerCMScompanies\Create.cshtml" />
+    <Content Include="Areas\AdminSuper\Views\CustomerCMScompanies\Delete.cshtml" />
+    <Content Include="Areas\AdminSuper\Views\CustomerCMScompanies\Details.cshtml" />
+    <Content Include="Areas\AdminSuper\Views\CustomerCMScompanies\Edit.cshtml" />
+    <Content Include="Areas\AdminSuper\Views\CustomerCMScompanies\Index.cshtml" />
+    <Content Include="Areas\AdminSuper\Views\Shared\MvcPagerView.cshtml" />
+    <Content Include="Areas\AdminSuper\Views\Shared\_Layout - 复制.cshtml" />
+    <Content Include="Areas\AdminSuper\Views\Center\Index.cshtml" />
+    <Content Include="Areas\AdminSuper\Views\CustomerCMScompanies\Create - 复制.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -325,6 +341,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\AdminSuper\ViewModels\" />
+    <Folder Include="Views\Uplpader\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

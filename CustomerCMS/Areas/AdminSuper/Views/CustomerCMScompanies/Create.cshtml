@@ -1,0 +1,612 @@
+﻿@model CustomerCMS.Areas.AdminSuper.Models.CustomerCMScompany
+
+@{
+    ViewBag.Title = "创建新企业";
+    Layout = "~/Areas/AdminSuper/Views/Shared/_Layout.cshtml";
+}
+
+@section headercssandjs
+{
+    <!-- basic styles -->
+
+    <link href="/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Content/font-awesome.min.css" />
+
+    <!--[if IE 7]>
+      <link rel="stylesheet" href="/Content/font-awesome-ie7.min.css" />
+    <![endif]-->
+    <!-- page specific plugin styles -->
+
+    <link rel="stylesheet" href="/Content/jquery-ui-1.10.3.custom.min.css" />
+    <link rel="stylesheet" href="/Content/chosen.css" />
+    <link rel="stylesheet" href="/Content/datepicker.css" />
+    <link rel="stylesheet" href="/Content/bootstrap-timepicker.css" />
+    <link rel="stylesheet" href="/Content/daterangepicker.css" />
+    <link rel="stylesheet" href="/Content/colorpicker.css" />
+
+    <!-- fonts -->
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+
+    <!-- ace styles -->
+
+    <link rel="stylesheet" href="/Content/ace.min.css" />
+    <link rel="stylesheet" href="/Content/ace-rtl.min.css" />
+    <link rel="stylesheet" href="/Content/ace-skins.min.css" />
+
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="/Content/ace-ie.min.css" />
+    <![endif]-->
+    <!-- inline styles related to this page -->
+    <!-- ace settings handler -->
+
+    <script src="/Scripts/ace-extra.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/Scripts/html5shiv.js"></script>
+    <script src="/Scripts/respond.min.js"></script>
+    <![endif]-->
+
+}
+@section footercssandjs
+{
+    <!-- basic scripts -->
+    <!--[if !IE]> -->
+
+    <!--script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></!--script-->
+
+    <!-- <![endif]-->
+    <!--[if IE]>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <![endif]-->
+    <!--[if !IE]> -->
+
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='/Scripts/jquery-2.0.3.min.js'>" + "<" + "/script>");
+    </script>
+
+    <!-- <![endif]-->
+    <!--[if IE]>
+    <script type="text/javascript">
+     window.jQuery || document.write("<script src='/Scripts/jquery-1.10.2.min.js'>"+"<"+"/script>");
+    </script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        if ("ontouchend" in document) document.write("<script src='/Scripts/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+    </script>
+    <script src="/Scripts/bootstrap.min.js"></script>
+    <script src="/Scripts/typeahead-bs2.min.js"></script>
+
+    <!-- page specific plugin scripts -->
+    <!--[if lte IE 8]>
+      <script src="/Scripts/excanvas.min.js"></script>
+    <![endif]-->
+
+    <script src="/Scripts/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="/Scripts/jquery.ui.touch-punch.min.js"></script>
+    <script src="/Scripts/chosen.jquery.min.js"></script>
+    <script src="/Scripts/fuelux/fuelux.spinner.min.js"></script>
+    <script src="/Scripts/date-time/bootstrap-datepicker.min.js"></script>
+    <script src="/Scripts/date-time/bootstrap-timepicker.min.js"></script>
+    <script src="/Scripts/date-time/moment.min.js"></script>
+    <script src="/Scripts/date-time/daterangepicker.min.js"></script>
+    <script src="/Scripts/bootstrap-colorpicker.min.js"></script>
+    <script src="/Scripts/jquery.knob.min.js"></script>
+    <script src="/Scripts/jquery.autosize.min.js"></script>
+    <script src="/Scripts/jquery.inputlimiter.1.3.1.min.js"></script>
+    <script src="/Scripts/jquery.maskedinput.min.js"></script>
+    <script src="/Scripts/bootstrap-tag.min.js"></script>
+
+    <!-- ace scripts -->
+
+    <script src="/Scripts/ace-elements.min.js"></script>
+    <script src="/Scripts/ace.min.js"></script>
+
+    <!-- inline scripts related to this page -->
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $('#id-disable-check').on('click', function () {
+                var inp = $('#form-input-readonly').get(0);
+                if (inp.hasAttribute('disabled')) {
+                    inp.setAttribute('readonly', 'true');
+                    inp.removeAttribute('disabled');
+                    inp.value = "This text field is readonly!";
+                }
+                else {
+                    inp.setAttribute('disabled', 'disabled');
+                    inp.removeAttribute('readonly');
+                    inp.value = "This text field is disabled!";
+                }
+            });
+
+
+            $(".chosen-select").chosen();
+            $('#chosen-multiple-style').on('click', function (e) {
+                var target = $(e.target).find('input[type=radio]');
+                var which = parseInt(target.val());
+                if (which == 2) $('#form-field-select-4').addClass('tag-input-style');
+                else $('#form-field-select-4').removeClass('tag-input-style');
+            });
+
+
+            $('[data-rel=tooltip]').tooltip({ container: 'body' });
+            $('[data-rel=popover]').popover({ container: 'body' });
+
+            $('textarea[class*=autosize]').autosize({ append: "\n" });
+            $('textarea.limited').inputlimiter({
+                remText: '%n character%s remaining...',
+                limitText: 'max allowed : %n.'
+            });
+
+            $.mask.definitions['~'] = '[+-]';
+            $('.input-mask-date').mask('99/99/9999');
+            $('.input-mask-phone').mask('(999) 999-9999');
+            $('.input-mask-eyescript').mask('~9.99 ~9.99 999');
+            $(".input-mask-product").mask("a*-999-a999", { placeholder: " ", completed: function () { alert("You typed the following: " + this.val()); } });
+
+
+
+            $("#input-size-slider").css('width', '200px').slider({
+                value: 1,
+                range: "min",
+                min: 1,
+                max: 8,
+                step: 1,
+                slide: function (event, ui) {
+                    var sizing = ['', 'input-sm', 'input-lg', 'input-mini', 'input-small', 'input-medium', 'input-large', 'input-xlarge', 'input-xxlarge'];
+                    var val = parseInt(ui.value);
+                    $('#form-field-4').attr('class', sizing[val]).val('.' + sizing[val]);
+                }
+            });
+
+            $("#input-span-slider").slider({
+                value: 1,
+                range: "min",
+                min: 1,
+                max: 12,
+                step: 1,
+                slide: function (event, ui) {
+                    var val = parseInt(ui.value);
+                    $('#form-field-5').attr('class', 'col-xs-' + val).val('.col-xs-' + val);
+                }
+            });
+
+
+            $("#slider-range").css('height', '200px').slider({
+                orientation: "vertical",
+                range: true,
+                min: 0,
+                max: 100,
+                values: [17, 67],
+                slide: function (event, ui) {
+                    var val = ui.values[$(ui.handle).index() - 1] + "";
+
+                    if (!ui.handle.firstChild) {
+                        $(ui.handle).append("<div class='tooltip right in' style='display:none;left:16px;top:-6px;'><div class='tooltip-arrow'></div><div class='tooltip-inner'></div></div>");
+                    }
+                    $(ui.handle.firstChild).show().children().eq(1).text(val);
+                }
+            }).find('a').on('blur', function () {
+                $(this.firstChild).hide();
+            });
+
+            $("#slider-range-max").slider({
+                range: "max",
+                min: 1,
+                max: 10,
+                value: 2
+            });
+
+            $("#eq > span").css({ width: '90%', 'float': 'left', margin: '15px' }).each(function () {
+                // read initial values from markup and remove that
+                var value = parseInt($(this).text(), 10);
+                $(this).empty().slider({
+                    value: value,
+                    range: "min",
+                    animate: true
+
+                });
+            });
+
+
+            $('#id-input-file-1').ace_file_input({
+                no_file: '没有文件…',
+                btn_choose: '选择',
+                btn_change: '更改',
+                droppable: false,
+                onchange: null,
+                thumbnail: false //| true | large
+                //whitelist:'gif|png|jpg|jpeg'
+                //blacklist:'exe|php'
+                //onchange:''
+                //
+            }).on('change', function () {
+                //<kkjspt.com选择图片后显示图片信息>
+                //console.log($(this).data('ace_input_files'));
+                //console.log($(this).data('ace_input_method'));
+
+                //var selectedFile = evt.target.files can use this  or select input file element 
+                //and access it's files object
+                var selectedFile = ($("#id-input-file-1"))[0].files[0];//FileControl.files[0];
+                if (selectedFile) {
+                    var FileSize = 0;
+                    var imageType = /image.*/;
+                    if (selectedFile.size > 1048576) {
+                        FileSize = Math.round(selectedFile.size * 100 / 1048576) / 100 + " MB";
+                    }
+                    else if (selectedFile.size > 1024) {
+                        FileSize = Math.round(selectedFile.size * 100 / 1024) / 100 + " KB";
+                    }
+                    else {
+                        FileSize = selectedFile.size + " Bytes";
+                    }
+                    // here we will add the code of thumbnail preview of upload images
+
+                    $("#FileName").text("文件名称 : " + selectedFile.name);
+                    $("#FileType").text("文件类型: " + selectedFile.type);
+                    $("#FileSize").text("文件大小: " + FileSize);
+                }
+            }
+            //</kkjspt.com选择图片后显示图片信息>
+            );
+ 
+         
+
+
+
+            //dynamically change allowed formats by changing before_change callback function
+            $('#id-file-format').removeAttr('checked').on('change', function () {
+                var before_change
+                var btn_choose
+                var no_icon
+                if (this.checked) {
+                    btn_choose = "Drop images here or click to choose";
+                    no_icon = "icon-picture";
+                    before_change = function (files, dropped) {
+                        var allowed_files = [];
+                        for (var i = 0 ; i < files.length; i++) {
+                            var file = files[i];
+                            if (typeof file === "string") {
+                                //IE8 and browsers that don't support File Object
+                                if (!(/\.(jpe?g|png|gif|bmp)$/i).test(file)) return false;
+                            }
+                            else {
+                                var type = $.trim(file.type);
+                                if ((type.length > 0 && !(/^image\/(jpe?g|png|gif|bmp)$/i).test(type))
+                                        || (type.length == 0 && !(/\.(jpe?g|png|gif|bmp)$/i).test(file.name))//for android's default browser which gives an empty string for file.type
+                                    ) continue;//not an image so don't keep this file
+                            }
+
+                            allowed_files.push(file);
+                        }
+                        if (allowed_files.length == 0) return false;
+
+                        return allowed_files;
+                    }
+                }
+                else {
+                    btn_choose = "Drop files here or click to choose";
+                    no_icon = "icon-cloud-upload";
+                    before_change = function (files, dropped) {
+                        return files;
+                    }
+                }
+                var file_input = $('#id-input-file-3');
+                file_input.ace_file_input('update_settings', { 'before_change': before_change, 'btn_choose': btn_choose, 'no_icon': no_icon })
+                file_input.ace_file_input('reset_input');
+            });
+
+
+
+
+            $('#spinner1').ace_spinner({ value: 0, min: 0, max: 200, step: 10, btn_up_class: 'btn-info', btn_down_class: 'btn-info' })
+            .on('change', function () {
+                //alert(this.value)
+            });
+            $('#spinner2').ace_spinner({ value: 0, min: 0, max: 10000, step: 100, touch_spinner: true, icon_up: 'icon-caret-up', icon_down: 'icon-caret-down' });
+            $('#spinner3').ace_spinner({ value: 0, min: -100, max: 100, step: 10, on_sides: true, icon_up: 'icon-plus smaller-75', icon_down: 'icon-minus smaller-75', btn_up_class: 'btn-success', btn_down_class: 'btn-danger' });
+
+
+
+            $('.date-picker').datepicker({ autoclose: true }).next().on(ace.click_event, function () {
+                $(this).prev().focus();
+            });
+            $('input[name=date-range-picker]').daterangepicker().prev().on(ace.click_event, function () {
+                $(this).next().focus();
+            });
+
+            $('#timepicker1').timepicker({
+                minuteStep: 1,
+                showSeconds: true,
+                showMeridian: false
+            }).next().on(ace.click_event, function () {
+                $(this).prev().focus();
+            });
+
+            $('#colorpicker1').colorpicker();
+            $('#simple-colorpicker-1').ace_colorpicker();
+
+
+            $(".knob").knob();
+
+
+            //we could just set the data-provide="tag" of the element inside HTML, but IE8 fails!
+            var tag_input = $('#form-field-tags');
+            if (!(/msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase()))) {
+                tag_input.tag(
+                  {
+                      placeholder: tag_input.attr('placeholder'),
+                      //enable typeahead by specifying the source array
+                      source: ace.variable_US_STATES,//defined in ace.js >> ace.enable_search_ahead
+                  }
+                );
+            }
+            else {
+                //display a textarea for old IE, because it doesn't support this plugin or another one I tried!
+                tag_input.after('<textarea id="' + tag_input.attr('id') + '" name="' + tag_input.attr('name') + '" rows="3">' + tag_input.val() + '</textarea>').remove();
+                //$('#form-field-tags').autosize({append: "\n"});
+            }
+
+
+
+
+            /////////
+            $('#modal-form input[type=file]').ace_file_input({
+                style: 'well',
+                btn_choose: 'Drop files here or click to choose',
+                btn_change: null,
+                no_icon: 'icon-cloud-upload',
+                droppable: true,
+                thumbnail: 'large'
+            })
+
+            //chosen plugin inside a modal will have a zero width because the select element is originally hidden
+            //and its width cannot be determined.
+            //so we set the width after modal is show
+            $('#modal-form').on('shown.bs.modal', function () {
+                $(this).find('.chosen-container').each(function () {
+                    $(this).find('a:first-child').css('width', '210px');
+                    $(this).find('.chosen-drop').css('width', '210px');
+                    $(this).find('.chosen-search input').css('width', '200px');
+                });
+            })
+            /**
+            //or you can activate the chosen plugin after modal is shown
+            //this way select element becomes visible with dimensions and chosen works as expected
+            $('#modal-form').on('shown', function () {
+                $(this).find('.modal-chosen').chosen();
+            })
+            */
+            //<kkjspt.com上传图片按钮动作>
+            $('#uploadclick').on('click', function () {
+               
+                alert('click');
+                //we can create form by passing the form to Constructor of formData object
+                //or creating it manually using append function 
+                //but please note file name should be same like the action Parameter
+                //var dataString = new FormData();
+                //dataString.append("UploadedFile", selectedFile);
+
+                var form = $('#id-input-file-1')[0];
+                alert(form);
+                var dataString = new FormData(form);
+                alert(dataString);
+                $.ajax({
+                    url: '~/Uploader/UploadPic',  //Server script to process data
+                    type: 'POST',
+                    xhr: function () {  // Custom XMLHttpRequest
+                        var myXhr = $.ajaxSettings.xhr();
+                        alert(myXhr);
+                        if (myXhr.upload) { // Check if upload property exists
+                            //myXhr.upload.onprogress = progressHandlingFunction
+                            myXhr.upload.addEventListener('progress', progressHandlingFunction,
+                            false); // For handling the progress of the upload
+                        }
+                        return myXhr;
+                    },
+                    //Ajax events
+                    //success: successHandler,
+                    //error: errorHandler,
+                   // complete: completeHandler,
+                    // Form data
+                    data: dataString,
+                    //Options to tell jQuery not to process data or worry about content-type.
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            });
+            //</kkjspt.com上传图片按钮动作>
+
+
+        });
+      
+      
+
+    </script>
+}
+
+@using (Html.BeginForm("Create/", "CustomerCMScompanies", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.cc_revoerytime, new { Value = "1" })
+    @Html.HiddenFor(model => model.cc_emailsetting, new { Value = "1" })
+    @Html.HiddenFor(model => model.cc_revoerytime_everday, new { Value = "21:11" })
+    @Html.HiddenFor(model => model.cc_revoerytime_oneday, new { Value = "2016-04-12 04:18:00" })
+    @Html.HiddenFor(model => model.cc_img, new { Value = "/img/kkjsp.jpg" })
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.cc_account, htmlAttributes: new { @class = "col-sm-3 control-label no-padding-right", @for = "form-field-1" })
+        <div class="col-sm-9">
+            @Html.EditorFor(model => model.cc_account, new { htmlAttributes = new { @class = "col-xs-10 col-sm-5", id = "form-field-1", placeholder = "请输入账号" } })
+            @Html.ValidationMessageFor(model => model.cc_account, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.cc_password, htmlAttributes: new { @class = "col-sm-3 control-label no-padding-right", @for = "form-field-2" })
+        <div class="col-sm-9">
+            @Html.EditorFor(model => model.cc_password, new { htmlAttributes = new { @class = "col-xs-10 col-sm-5", id = "form-field-2", placeholder = "请输入密码" } })
+            @Html.ValidationMessageFor(model => model.cc_password, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.cc_name, htmlAttributes: new { @class = "col-sm-3 control-label no-padding-right" })
+        <div class="col-sm-9">
+            @Html.EditorFor(model => model.cc_name, new { htmlAttributes = new { @class = "col-xs-10 col-sm-5", placeholder = "请输入营业执照名称" } })
+            @Html.ValidationMessageFor(model => model.cc_name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+        <div class="space-4"></div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cc_numer, htmlAttributes: new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.cc_numer, new { htmlAttributes = new { @class = "col-xs-10 col-sm-5", placeholder = "请输入营业执照编号" } })
+                @Html.ValidationMessageFor(model => model.cc_numer, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="space-4"></div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cc_fr, htmlAttributes: new { @class = "col-sm-3 control-label no-padding-right" })
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.cc_fr, new { htmlAttributes = new { @class = "col-xs-10 col-sm-5", placeholder = "请输入法人姓名" } })
+                @Html.ValidationMessageFor(model => model.cc_fr, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="space-4"></div>
+
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">上传营业执照：</label>
+
+             <div class="col-sm-9">
+
+                <div class="col-sm-6">
+                    <div class="widget-box">
+                        <div class="widget-header">
+                            <h5>请选择要上传的文件（不超过1M）</h5>
+                      
+                        </div>
+
+                        <div class="widget-body">
+                            <div class="widget-main">
+                                <div class="ace-file-input ace-file-multiple">
+                                    <input multiple="" type="file" id="id-input-file-1" class="hidden">
+                                    <a class="remove" href="#"><i class="icon-remove"></i></a>
+                               
+
+                                    <div class="progress" data-percent="26%" id="progress">
+                                        <div class="progress-bar" style="width:16%;"></div>
+                                    </div>
+                                    
+                                    <div id="FileName" class="info"></div>
+                                    <div id="FileType" class="info"></div>
+                                    <div id="FileSize" class="info"></div>
+
+                                    <span class="btn btn-sm btn-primary" id="uploadclick">
+                                        <i class="icon-cloud-upload bigger-110"></i>
+                                        确认可用，上传
+                                    </span>
+
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="space-4"></div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cc_regtime, htmlAttributes: new { @class = "col-sm-3 control-label no-padding-right", @for = "form-field-1" })
+            <div class="col-sm-6">
+                <div class="input-group">
+                    @Html.EditorFor(model => model.cc_regtime, new { htmlAttributes = new { @class = "form-control date-picker", id = "id-date-picker-1" } })
+                    @Html.ValidationMessageFor(model => model.cc_regtime, "", new { @class = "text-danger" })
+                    <span class="input-group-addon">
+                        <i class="icon-calendar bigger-110"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="space-4"></div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cc_endtime, htmlAttributes: new { @class = "col-sm-3 control-label no-padding-right", @for = "form-field-1" })
+            <div class="col-sm-6">
+                <div class="input-group">
+                    @Html.EditorFor(model => model.cc_endtime, new { htmlAttributes = new { @class = "form-control date-picker", id = "id-date-picker-1" } })
+                    @Html.ValidationMessageFor(model => model.cc_endtime, "", new { @class = "text-danger" })
+                    <span class="input-group-addon">
+                        <i class="icon-calendar bigger-110"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="space-4"></div>
+
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">当前状态：</label>
+            <div class="col-sm-6">
+
+                <div class="btn-group">
+                    <button class="btn btn-grey">状态控制</button>
+
+                    <button data-toggle="dropdown" class="btn btn-grey dropdown-toggle">
+                        <span class="icon-caret-down icon-only"></span>
+                    </button>
+
+                    <ul class="dropdown-menu dropdown-inverse">
+                        <li>
+                            <a href="javascript:void(0);">1被删除</a>
+                        </li>
+                        <li>
+                            <a href="#">2待激活</a>
+                        </li>
+
+                        <li>
+                            <a href="#">3激活</a>
+                        </li>
+                        <li>
+                            <a href="#">4违规被禁用</a>
+                        </li>
+                        <li>
+                            <a href="#">5到期</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="space-4"></div>
+
+
+
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right"></label>
+            <div class="col-sm-6">
+                <button class="btn btn-info" type="button">
+                    <i class="icon-ok"></i>
+                    保存
+                </button>
+            </div>
+        </div>
+            <div class="space-4"></div>
+}
+

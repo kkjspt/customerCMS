@@ -15,6 +15,7 @@ namespace CustomerCMS.Areas.AdminSuper.DAL
         public DbSet<SysUser> SysUsers { get; set; }
         public DbSet<SysRole> SysRoles { get; set; }
         public DbSet<SysUserRole> SysUsersRoles { get; set; }
+        public DbSet<CustomerCMScompany> CustomerCMScompanies { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

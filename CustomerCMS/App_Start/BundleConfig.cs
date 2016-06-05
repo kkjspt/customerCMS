@@ -64,7 +64,26 @@ namespace CustomerCMS
             bundles.Add(new StyleBundle("~/Content/css/ace/ie").Include(
                         "~/Content/ace-ie.min.css"
                     ));
-
+            //以上是公共部分
+            //以下是特殊需要页面部分
+            //CustomerCMScompany
+            bundles.Add(new StyleBundle("~/Content/css/other1").Include(
+                        "~/Content/bootstrap-timepicker.css",
+                        "~/Content/chosen.css",
+                        "~/Content/colorpicker.css",
+                        "~/Content/datepicker.css",
+                        "~/Content/daterangepicker.css",
+                        "~/Content/jquery-ui-1.10.3.custom.min.css"
+                    ));
+            bundles.Add(new ScriptBundle("~/bundles/other1").Include(
+                      "~/Scripts/bootstrap-colorpicker.min.js",
+                      "~/Scripts/bootstrap-tag.min.js",
+                      "~/Scripts/chosen.jquery.min.js",
+                      "~/Scripts/jquery.autosize.min.js",
+                      "~/Scripts/jquery.inputlimiter.1.3.1.min.js",
+                      "~/Scripts/jquery.knob.min.js",
+                      "~/Scripts/jquery.maskedinput.min.js"
+                     ));
 
 
         }
